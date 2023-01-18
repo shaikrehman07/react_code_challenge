@@ -150,11 +150,12 @@ function App() {
                 className="w-56 border border-slate-400 p-1 rounded focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600"
               >
                 <option value={0}>--select--</option>
-                {selectValues.map((val, index) => (
-                  <option key={index} value={index + 1}>
-                    {val}
-                  </option>
-                ))}
+                {selectValues.length > 0 &&
+                  selectValues.map((val, index) => (
+                    <option key={index} value={index + 1}>
+                      {val}
+                    </option>
+                  ))}
               </select>
               {sectoError && (
                 <p className="text-red-700 text-sm font-medium">
