@@ -29,7 +29,7 @@ function App() {
     if (formDetails.name.length === 0) {
       setNameError(true);
     }
-    if (formDetails.sector === "select") {
+    if (formDetails.sector === 0) {
       setSectorError(true);
     }
     if (formDetails.agreeTerms === false) {
@@ -42,21 +42,22 @@ function App() {
       formDetails.agreeTerms === true
     ) {
       if (prevName.length > 0) {
-        axios({
-          method: "post",
-          url: `/user/${prevName}`,
-          data: JSON.stringify({
-            name: formDetails.name,
-            sector: formDetails.sector,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((res) => {
-            setPrevName("");
-          })
-          .catch((err) => console.log(err));
+        // axios({
+        //   method: "post",
+        //   url: `/user/${prevName}`,
+        //   data: JSON.stringify({
+        //     name: formDetails.name,
+        //     sector: formDetails.sector,
+        //   }),
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        // })
+        //   .then((res) => {
+        //     setPrevName("");
+        //   })
+        //   .catch((err) => console.log(err));
+        setPrevName("");
 
         setShowDetails((prev) => !prev);
 
@@ -76,22 +77,23 @@ function App() {
         setSectorError(false);
       } else {
         setPrevName(formDetails.name);
-        axios({
-          method: "post",
-          url: "/user",
-          data: JSON.stringify({
-            name: formDetails.name,
-            sector: formDetails.sector,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((res) => {
-            console.log(res.data);
-            setShowDetails((prev) => !prev);
-          })
-          .catch((err) => console.log(err));
+        // axios({
+        //   method: "post",
+        //   url: "/user",
+        //   data: JSON.stringify({
+        //     name: formDetails.name,
+        //     sector: formDetails.sector,
+        //   }),
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        // })
+        //   .then((res) => {
+        //     console.log(res.data);
+        //     setShowDetails((prev) => !prev);
+        //   })
+        //   .catch((err) => console.log(err));
+        setShowDetails((prev) => !prev);
       }
     }
 
@@ -102,7 +104,7 @@ function App() {
     if (formDetails.name.length > 0) {
       setNameError(false);
     }
-    if (formDetails.sector !== "select") {
+    if (formDetails.sector !== 0) {
       setSectorError(false);
     }
     if (formDetails.agreeTerms === true) {
@@ -110,12 +112,13 @@ function App() {
     }
 
     if (selectValues.length === 0) {
-      axios({
-        method: "get",
-        url: "/sectors",
-      })
-        .then((res) => setSelectValues(res.data))
-        .catch((err) => console.log(err));
+      //values been set from DataBase/data.js
+      // axios({
+      //   method: "get",
+      //   url: "/sectors",
+      // })
+      //   .then((res) => setSelectValues(res.data))
+      //   .catch((err) => console.log(err));
     }
   }, [formDetails, selectValues]);
 

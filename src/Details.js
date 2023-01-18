@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function Details({ name, sector, prevName, sectorValues }) {
+function Details({ name, sector, sectorValues }) {
   const [nameFromDB, setNameFromDB] = useState("");
   const [sectorFromDB, setSectorFromDB] = useState("");
   const [editData, setEditData] = useState(false);
 
   useEffect(() => {
     if (!editData && name.length > 0) {
-      axios({
-        method: "get",
-        url: `/user/${name}`,
-      })
-        .then((res) => {
-          setNameFromDB(res.data[0]);
-          setSectorFromDB(res.data[1]);
-          setEditData(true);
-        })
-        .catch((err) => err);
+      // axios({
+      //   method: "get",
+      //   url: `/user/${name}`,
+      // })
+      //   .then((res) => {
+      //     setNameFromDB(res.data[0]);
+      //     setSectorFromDB(res.data[1]);
+      //     setEditData(true);
+      //   })
+      //   .catch((err) => err);
+      setNameFromDB(name);
+      setSectorFromDB(sectorValues[sector - 1]);
+      setEditData(true);
     }
   }, [name, sector, nameFromDB, sectorFromDB, editData]);
 
