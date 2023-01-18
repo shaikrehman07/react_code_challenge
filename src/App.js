@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Details from "./Details";
 import axios from "axios";
+import data from "./Database/data";
 
 function App() {
   const [formDetails, setFormDetails] = useState({
@@ -12,7 +13,7 @@ function App() {
   const [nameError, setNameError] = useState(false);
   const [sectoError, setSectorError] = useState(false);
   const [agreeTermsError, setAgreeTermsError] = useState(false);
-  const [selectValues, setSelectValues] = useState([]);
+  const [selectValues, setSelectValues] = useState(data);
   const [prevName, setPrevName] = useState("");
 
   function handleChange(e) {
@@ -150,12 +151,11 @@ function App() {
                 className="w-56 border border-slate-400 p-1 rounded focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600"
               >
                 <option value={0}>--select--</option>
-                {selectValues.length > 0 &&
-                  selectValues.map((val, index) => (
-                    <option key={index} value={index + 1}>
-                      {val}
-                    </option>
-                  ))}
+                {selectValues.map((val, index) => (
+                  <option key={index} value={index + 1}>
+                    {val}
+                  </option>
+                ))}
               </select>
               {sectoError && (
                 <p className="text-red-700 text-sm font-medium">
